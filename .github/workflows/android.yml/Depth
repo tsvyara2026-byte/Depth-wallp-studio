@@ -1,0 +1,26 @@
+name: Build APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Extract project
+        run: |
+          unzip -q Depth_Wallpaper_Studio_Android_Project_with_Build.zip -d project
+          cd project/DepthWallpaperStudio
+          gradle assembleDebug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Depth-Wallpaper-APK
+          path: project/DepthWallpaperStudio/app/build/outputs/apk/debug/app-debug.apk
