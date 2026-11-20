@@ -16,8 +16,7 @@ jobs:
 
       - name: Extract project
         run: |
-          unzip -q Depth_Wallpaper_Studio_Android_Project_with_Build.zip -d project
-          cd project/DepthWallpaperStudio
+          unzip -q Depth_Wallpaper_Studio_Android_Project.zip -d project/DepthWallpaperStudio
           gradle assembleDebug
 
       - uses: actions/upload-artifact@v4
